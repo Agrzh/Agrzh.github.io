@@ -1,133 +1,201 @@
-let canvas = document.getElementById("sandbox");
-let context = canvas.getContext("2d");
+var t = new Array(9);
 
-
-
-//let R = 300/2;
-function drowDivisions(R) {
-
-
-for(let d = 0; d < 60; ++d){
-  let angle = (d/60)*(2*Math.PI);
-  let pX = Math.cos(angle)*R;
-  let pY = -Math.sin(angle)*R;
-  let qX = 0.9 * pX;
-  let qY = 0.9 * pY;
-  pX += R; pY += R;
-  qX += R; qY += R;
-
-
-  let line = new Path2D();
-
-  line.moveTo(pX,pY);
-  line.lineTo(qX, qY);
-if(d % 5 == 0){
-  context.lineWidth = 3;
-} else context.lineWidth = 1;
-  context.stroke(line);
-
-
-}
+function ai() {
+  var id = Math.floor(Math.random() * 9);
+  t[id] ? ai() : move(id, 'ai');
 }
 
-function getTimeNow() {
 
-let date = new Date();
-let hours = date.getHours();
-let minutes = date.getMinutes();
-let seconds = date.getSeconds();
-console.log(hours, minutes, seconds);
-return {
-hours: hours,
-minutes:minutes,
-seconds:seconds
-
-};
+function checkEnd() {
+  if (t[0]=='ai' && t[1]=='ai' && t[2]=='ai' || t[0]=='player' && t[1]=='player' && t[2]=='player')  return true;
+  if (t[3]=='ai' && t[4]=='ai' && t[5]=='ai' || t[3]=='player' && t[4]=='player' && t[5]=='player')  return true;
+  if (t[6]=='ai' && t[7]=='ai' && t[8]=='ai' || t[6]=='player' && t[7]=='player' && t[8]=='player')  return true;
+  if (t[0]=='ai' && t[3]=='ai' && t[6]=='ai' || t[0]=='player' && t[3]=='player' && t[6]=='player')  return true;
+  if (t[1]=='ai' && t[4]=='ai' && t[7]=='ai' || t[1]=='player' && t[4]=='player' && t[7]=='player')  return true;
+  if (t[2]=='ai' && t[5]=='ai' && t[8]=='ai' || t[2]=='player' && t[5]=='player' && t[8]=='player')  return true;
+  if (t[0]=='ai' && t[4]=='ai' && t[8]=='ai' || t[0]=='player' && t[4]=='player' && t[8]=='player')  return true;
+  if (t[2]=='ai' && t[4]=='ai' && t[6]=='ai' || t[2]=='player' && t[4]=='player' && t[6]=='player')  return true;
+  if(t[0] && t[1] && t[2] && t[3] && t[4] && t[5] && t[6] && t[7] && t[8]) return true;
 }
 
-function getAngles(){
-  let timeNow = getTimeNow();
-
-  let hoursAngle, minutesAngle, secondsAngle;
-  secondsAngle = (timeNow.seconds / 60)*(2*Math.PI);
-    minutesAngle = (timeNow.minutes / 60)*(2*Math.PI);
-    hoursAngle = ((timeNow.hours % 12)/12)*(2*Math.PI);
-
-  secondsAngle = Math.PI / 2 - secondsAngle;
-    minutesAngle = Math.PI / 2 - minutesAngle;
-    hoursAngle = Math.PI / 2 - hoursAngle;
-
-    return{
-      secondsAngle: secondsAngle,
-      minutesAngle: minutesAngle,
-      hoursAngle: hoursAngle
-    };
-}
-function drawSecondHand(angle, R) {
-
-let pX = Math.cos(angle)* 0.9 * R;
-let pY = -Math.sin(angle)* 0.9 * R;
-pX += R; pY += R;
-
-let line = new Path2D;
-line.moveTo(R,R);
-line.lineTo(pX,pY);
-context.strokeStyle = "red";
-context.stroke(line);
-context.strokeStyle = "black"
-
+function move(id, role) {
+  if(t[id]) return false;
+  t[id] = role;
+  document.getElementById(id).className = 'cell ' + role;
+  !checkEnd() ? (role == 'player') ? ai() : null : reset()
 }
 
-function drawMinutesHand(angle, R) {
-
-let pX = Math.cos(angle)* 0.7 * R;
-let pY = -Math.sin(angle)* 0.7 * R;
-pX += R; pY += R;
-
-let line = new Path2D;
-line.moveTo(R,R);
-line.lineTo(pX,pY);
-context.lineWidth = "2"
-context.strokeStyle = "black";
-context.stroke(line);
-context.strokeStyle = "black"
-context.lineWidth = "1"
+function reset() {
+  alert("Игра окончена!");
+  location.reload();
 }
 
-function drawHoursHand(angle, R) {
+(function(){
+    var minBlur=2,
+        maxBlur=200,
+        isUpdatingBlur=false,
+        updateBlurStopTimeout=null,
+        multiplier=0.25
+    ;
 
-let pX = Math.cos(angle)* 0.5 * R;
-let pY = -Math.sin(angle)* 0.5 * R;
-pX += R; pY += R;
+    $.fn.toggleBlur=function(v){
+        var blurId=$(this).data("blur-id");
+        var value=v?"url(#"+blurId+")":"none";
+        $(this).css({
+            webkitFilter:value,
+            filter:value
+        });
+    }
+    $.fn.setBlur=function(v){
+        var blur=$(this).data("blur");
+        v=Math.round(v);
+        if($(this).data("blur-value")!=v){
+            if(v==0){
+                $(this).toggleBlur(false);
+            }else{
+                $(this).toggleBlur(true);
 
-let line = new Path2D;
-line.moveTo(R,R);
-line.lineTo(pX,pY);
-context.lineWidth = "3"
-context.strokeStyle = "black";
-context.stroke(line);
-context.strokeStyle = "black"
-context.lineWidth = "1"
+                blur.firstElementChild.setAttribute("stdDeviation",v+",0");
+                $(this).data("blur-value",v);
+            }
+        }
+    }
+    $.fn.initBlur=function(_multiplier){
+        if(typeof _multiplier=="undefined") _multiplier=0.25;
+        multiplier=_multiplier;
+        var defs=$(".filters defs").get(0);
+        var blur=$("#blur").get(0);
+        $(this).each(function(i){
+            var blurClone=blur.cloneNode(true);
+            var blurId="blur"+i;
+            blurClone.setAttribute("id",blurId);
+            defs.appendChild(blurClone);
+            $(this)
+                .data("blur",blurClone)
+                .data("blur-id",blurId)
+                .data("blur-value",0)
+                .data("last-pos",$(this).offset())
+            ;
+        });
+    }
+
+    $.updateBlur=function(){
+        $(".js-blur").each(function(){
+            var pos=$(this).offset();
+            var lastPos=$(this).data("last-pos");
+            var v=Math.abs(pos.left-lastPos.left)*multiplier;
+            $(this).data("last-pos",pos);
+            $(this).setBlur(v);
+        })
+        if(isUpdatingBlur){
+            requestAnimationFrame($.updateBlur);
+        }
+    }
+    $.startUpdatingBlur=function(stopDelay){
+        if(typeof stopDelay=="undefined"){
+            stopDelay=-1;
+        }
+        if(updateBlurStopTimeout!=null){
+            clearTimeout(updateBlurStopTimeout);
+            updateBlurStopTimeout=null;
+        }
+        if(!isUpdatingBlur){
+            isUpdatingBlur=true;
+            $.updateBlur();
+        }
+        if(stopDelay>-1){
+            updateBlurStopTimeout=setTimeout($.stopUpdatingBlur,stopDelay);
+        }
+    }
+    $.stopUpdatingBlur=function(){
+        isUpdatingBlur=false;
+    }
+})();
+
+// Modal Window
+$(document).ready(function() {
+    var $modal = $(".modal"),
+        $overlay = $(".modal-overlay"),
+        blocked = false,
+        unblockTimeout=null
+    ;
+
+    TweenMax.set($modal,{
+        autoAlpha:0
+    })
+
+    var isOpen = false;
+
+    function openModal() {
+        if (!blocked) {
+            block(400);
+
+            TweenMax.to($overlay, 0.3, {
+                autoAlpha: 1
+            });
+
+            TweenMax.fromTo($modal, 0.5, {
+                x: (-$(window).width() - $modal.width()) / 2 - 50,
+                scale:0.9,
+                autoAlpha:1
+            }, {
+                delay: 0.1,
+                rotationY:0,
+                scale:1,
+                opacity:1,
+                x: 0,
+                z:0,
+                ease: Elastic.easeOut,
+                easeParams: [0.4, 0.3],
+                force3D: false
+            });
+            $.startUpdatingBlur(800);
+        }
+    }
+
+    function closeModal() {
+        if(!blocked){
+            block(400);
+            TweenMax.to($overlay, 0.3, {
+                delay: 0.3,
+                autoAlpha: 0
+            });
+            TweenMax.to($modal, 0.3,{
+                x: ($(window).width() + $modal.width()) / 2 + 100,
+                scale:0.9,
+                ease: Quad.easeInOut,
+                force3D: false,
+                onComplete:function(){
+                    TweenMax.set($modal,{
+                        autoAlpha:0
+                    });
+                }
+            });
+            $.startUpdatingBlur(400);
+        }
+    }
+    function block(t){
+        blocked=true;
+        if(unblockTimeout!=null){
+            clearTimeout(unblockTimeout);
+            unblockTimeout=null;
+        }
+        unblockTimeout=setTimeout(unblock,t);
+    }
+    function unblock(){
+        blocked=false;
+    }
+    $(".open-modal").click(function() {
+        openModal();
+    })
+    $(".close-modal,.modal-overlay,.input-submit").click(function() {
+        closeModal();
+    })
+
+    $modal.initBlur(0.5);
+
+})
+
+function audio() {
+
 }
-
-function drawWatch() {
-
-context.clearRect(0, 0, 300, 300);
-let R = 300/2;
-let circle = new Path2D();
-circle.arc(R,R,R, 0, 2*Math.PI);
-context.stroke(circle);
-let angles = getAngles();
-drowDivisions(R);
-drawSecondHand(angles.secondsAngle, R);
-drawMinutesHand(angles.minutesAngle, R);
-drawHoursHand(angles.hoursAngle, R);
-setTimeout(drawWatch, 1000);
-
-}
-
-window.onload = function (){
-drawWatch();
-
-}
-//234
