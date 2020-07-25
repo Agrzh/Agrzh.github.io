@@ -1,0 +1,182 @@
+@keyframes text-open {
+  0% {
+    transform: scale(0);
+    text-shadow: 0px 0px 0px;
+  }
+  20%{
+      transform: scale(1);
+  }
+  100% {
+    transform: scale(0.7);
+    text-shadow: 10px 10px 10px black;
+  }
+}
+
+@keyframes calc-open {
+  0% {
+    transform: scale(0);
+    text-shadow: 0px 0px 0px;
+  }
+  100% {
+
+    text-shadow: 10px 10px 10px black;
+    transform: scaleY(1);
+    margin-bottom: 100px;
+  }
+}
+html, body
+#smile{
+  animation-name: smile;
+  animation-delay: 1s;
+  animation-duration: 3s;
+  animation-fill-mode:both;
+}
+
+.main{
+  padding: 20px;
+  position: relative;
+  margin: 0 auto;
+  background-image: url('https://s1.1zoom.ru/big3/943/DOTA_2_Wraith_King_480160.jpg');
+}
+
+.textzona{
+  opacity: 1;
+  position:relative;
+  z-index: 100;
+  font-size: xxx-large;
+  bottom: -130px;
+  color: #fff;
+  text-align: center;
+  animation-name: text-open;
+  animation-delay: 1s;
+  animation-duration: 3s;
+  animation-fill-mode:both;
+
+}
+.form-group{
+  width: 600px;
+  font-size: 30px;
+}
+.calc {
+	margin-top: -50px;
+	border: 6px solid #aeaeae;
+	padding: 20px 40px;
+  background-color: rgb(65, 15, 114);
+  width: 600px;
+  position: relative;
+  margin-left: 31.3%;
+  animation-name: calc-open;
+  animation-delay: 1s;
+  animation-duration: 3s;
+  animation-fill-mode:both;
+  background-image: url('https://img2.goodfon.ru/original/1920x1261/9/b7/dota-2-wraith-king-ostarion-4085.jpg');
+
+}
+#result_multi {
+	font-size: 50px;
+	font-weight: 900;
+  color: red;
+}
+
+.btn-btn-primary{
+font-size: 30px;
+}
+
+.form-control{
+  font-size: 39px;
+}
+.panel{
+  width: 1000px;
+  length: 1000px;
+}
+#navbar ul {
+  display: none;
+  background-color: #f90;
+  position: absolute;
+  top: 100%;
+}
+#navbar li:hover ul { display: block; }
+#navbar, #navbar ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+#navbar {
+  height: 30px;
+  background-color: #0000;
+  padding-left: 25px;
+  min-width: 470px;
+}
+#navbar li {
+  float: left;
+  position: relative;
+  height: 100%;
+}
+#navbar li a {
+  display: block;
+  padding: 6px;
+  width: 100px;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+}
+#navbar ul li { float: none; }
+#navbar li:hover { background-color: #f90; }
+#navbar ul li:hover { background-color: #666; }
+
+.btn-btn-primary{
+  width: 150px;
+  height: 40px;
+  text-decoration: none;
+  padding-top: 3px;
+  color: #a675b3;
+  text-align: center;
+  line-height: 20px;
+  display: block;
+  margin: 15px auto;
+  font: normal 17px arial;
+}
+
+.btn-btn-primary:not(.active) {
+  box-shadow: inset 0 1px 1px rgba(111, 55, 125, 0.8), inset 0 -1px 0px rgba(63, 59, 113, 0.2), 0 9px 16px 0 rgba(0, 0, 0, 0.3), 0 4px 3px 0 rgba(0, 0, 0, 0.3), 0 0 0 1px #150a1e;
+  background-image: linear-gradient(#3b2751, #271739);
+  text-shadow: 0 0 21px rgba(223, 206, 228, 0.5), 0 -1px 0 #311d47;
+}
+
+.btn-btn-primary:not(.active):hover,
+.btn-btn-primary:not(.active):focus {
+  transition: color 200ms linear, text-shadow 500ms linear;
+  color: #fff;
+  text-shadow: 0 0 21px rgba(223, 206, 228, 0.5), 0 0 10px rgba(223, 206, 228, 0.4), 0 0 2px #2a153c;
+}
+.btn-btn-primary:not(:hover) {
+    transition: 0.6s;
+}
+.password {
+	position: relative;
+}
+.password_1{
+  width: 200px;
+	height: 30px;
+  font-size: 20px;
+}
+.password-control {
+	position: absolute;
+	top: 11px;
+	right: 206px;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(view.png) 0 0 no-repeat;
+}
+.password-control.view {
+	background: url(no-view.png) 0 0 no-repeat;
+}
+.login1{
+  height: 30px;
+  width: 200px;
+  font-size: 20px;
+}
+.inp_log{
+  margin-bottom: -200px
+}
