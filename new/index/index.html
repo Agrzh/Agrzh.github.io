@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>11А Lounge</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <audio src="JEEMBO.mp3" autoplay="autoplay"></audio>
+    <div class="main">
+      <ul id="navbar">
+       <li><a href="#">Главная</a></li>
+       <li><a href="#">Новости</a></li>
+       <li><a href="#">Контакты</a>
+         <ul>
+           <li><a href="#" onclick="adress_school();">Адрес</a></li>
+           <li><a href="#">Телефон</a></li>
+           <li><a href="#">Email</a></li>
+         </ul>
+       </li>
+       <li><a href="#" class="about" onclick="about();">О нас</a></li>
+     </ul>
+          <div class="textzona">
+            <h1 id="main_text">Здарова, бандиты</h1>
+            <div class="container">
+          <div class="row">
+      		<div class="col-sm-4">
+      			<div class="calc">
+            <canvas id="smile" width="200" height="100"></canvas>
+  <div class="form-group">
+      					   <h3>Авторизация</h3>
+                     <label for="inp_1" class="inp_log">Введите логин:</label>
+                            <div class="login">
+                                <input type="login" id="login-input" placeholder="Введите логин" name="login" class="login1">
+                                  <a href="#" class="login-control" onclick="return show_hide_password(this);"></a>
+                            </div>
+                            <label for="inp_2">Введите пароль:</label>
+                            <div class="password">
+                              <input type="password" id="password-input" placeholder="Введите пароль" name="password" class="password_1">
+                              <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
+              </div>
+  </div>
+                             <button onclick="multi()" class="btn-btn-primary">Войти</button>
+  					<hr>
+  			    </div>
+      		</div>
+      	</div>
+  </div>
+          </div>
+    </div>
+    <script type="text/javascript" src="scripts/script.js"></script>
+  </body>
+</html>

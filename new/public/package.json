@@ -1,0 +1,12 @@
+{
+	"name": "public",
+	"version": "0.0.1",
+	"author": "Buyanov K.M.",
+	"scripts": {
+		"start": "server.js"
+	},
+	"dependencies": {
+		"express": "^4.17.1",
+		"jquery": "^3.5.1"
+	}
+}

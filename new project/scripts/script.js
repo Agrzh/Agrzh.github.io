@@ -52,3 +52,11 @@ console.log(result);
   	}
   	return false;
   }
+
+
+function about() {
+  window.location.href = "https://vk.com/pshkghdhfksjdhskfjah";
+}
+function adress_school() {
+  window.location.href = "http://school17.kaluga.eduru.ru/"
+}
