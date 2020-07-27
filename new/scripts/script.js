@@ -58,8 +58,13 @@ function about() {
   window.location.href = "https://vk.com/pshkghdhfksjdhskfjah";
 }
 function adress_school() {
-  window.location.href = "http://school17.kaluga.eduru.ru/"
+  window.location.href = "http://school17.kaluga.eduru.ru/";
 }
+
+function log(){
+  window.location.href = "forum.html";
+}
+
 /*function main_str() {
   document.getElementById('main_str1').innerHTML="А ты щас где?";
   document.getElementById('main_str1').src="index.html";

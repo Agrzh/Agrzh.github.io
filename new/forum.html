@@ -2,25 +2,41 @@
 <html lang="ru" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Обыкновенный форум</title>
+    <title>Обыкновенный форумо</title>
     <link rel="shortcut icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="css/forum.css">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
   </head>
   <body>
-      <audio src="JEEMBO.mp3" autoplay="autoplay"></audio>
         <div id="forum_main">
             <img src="" alt="" class="background">
                 <div class="informs">
                   <ul id="forum_menu">
-                    <li><a href="#" onclick="">Профиль</a></li>
-                    <li><a href="#" onclick="">Главная</a></li>
-                    <li><a href="#" onclick="">Новости</a></li>
-                    <li><a href="#" onclick="">Дискорд</a></li>
-                    <li><a href="#" onclick="">Выйти</a></li>
+                    <li><a href="#" type=""onclick="profile();">Профиль</a></li>
+                    <li><a href="#" onclick="no_news();">Фон</a></li>
+                    <li><a href="#" onclick="news();" class="news">Новости</a></li>
+                    <li><a href="https://discord.gg/wQyD6j" onclick="copyToClipboard();" id="discord">Дискорд</a></li>
+                    <li><a href="#" onclick="exit();">Выйти</a></li>
                   </ul>
                 </div>
+                <div class="block_news"></div>
+                <div class="menu_profile">
+                  <a href="#" class="close" onclick="close_profile();">Закрыть</a>
+                  <canvas id="avatar" width="250" height="150"></canvas>
+                  <div class="fio">
+                    <ul id="names">
+                        <li><a type="" class="first_name"></a></li>
+                        <li><a type="" class="second_name"></a></li>
+                    </ul>
+                  </div>
+                  <div class="settings">
+                    <ul id="change_avatar">
+                      <li><a href="#"onclick="">Изменить аватар</a></li>
+                    </ul>
+                  </div>
+                </div>
                 <div class="fullscreen-bg">
-                    <video loop="" muted="" autoplay="autoplay" poster="https://img4.goodfon.ru/original/1920x1187/f/5d/robin-ruan-monkey-king-art-obeziana-igra-korol.jpg" class="bg__video">
+                    <video muted="" autoplay="autoplay" poster="https://img4.goodfon.ru/original/1920x1187/f/5d/robin-ruan-monkey-king-art-obeziana-igra-korol.jpg" class="bg__video" controls="controls" loop="loop">
                       <source src="bg_video.mp4" type="video/mp4">
                     </video>
                   </div>

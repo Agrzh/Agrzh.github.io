@@ -42,6 +42,8 @@
   opacity: 1;
   }
 }
+
+
 body, html
 #forum_main{
   position: fixed;
@@ -97,6 +99,8 @@ body, html
   float: left;
   position: relative;
   height: 100%;
+  animation-fill-mode:both;  box-shadow: inset 0 1px 1px rgb(116,90,60,1), inset 0 -1px 0px rgb(116,90,60,1), 0 9px 16px 0 rgb(116,90,60,1), 0 4px 3px 0 rgb(116,90,60,1), 0 0 0 1px #150a1e;
+  text-shadow: 0 0 21px rgb(116,90,60,1), 0 0 10px rgb(116,90,60,1), 0 0 2px #2a153c;
 }
 #forum_menu li a {
   display: block;
@@ -150,3 +154,60 @@ body, html
       color:#fff;
       font-size: 70px;
       margin-top:17%;
+}
+.menu_profile{
+  width: 250px;
+  background: rgb(110,106,102);
+  background: radial-gradient(circle, rgba(110,106,102,1) 0%, rgba(255,255,255,1) 99%);
+  height:500px;
+  position: absolute;
+  margin-left: 30px;
+  margin-top: 25px;
+  opacity: 0;
+  animation-fill-mode:both;  box-shadow: inset 0 1px 1px rgb(255,255,255), inset 0 -1px 0px rgb(255,255,255), 0 9px 16px 0 rgb(255,255,255), 0 4px 3px 0 rgb(255,255,255), 0 0 0 1px #150a1e;
+  text-shadow: 0 0 21px rgb(223, 206, 228, 0.5), 0 0 10px rgba(223, 206, 228, 0.4), 0 0 2px #2a153c;
+}
+
+.close{
+  position: absolute;
+  font-size: 10px;
+  margin-left: 200px;
+  margin-top: 480px;
+  color: #808080;
+  text-shadow: 20px 20px 20px black;
+}
+.fio{
+  background-color: black;
+  margin-top: -30px;
+  height: 80px
+}
+#change_avatar{
+  height: 30px;
+  padding-left: 64px;
+  font-size: 17px;
+  list-style-type: none;
+}
+.block_news{
+  -webkit-transform: translate(0, 0);
+  -webkit-transition: -webkit-transform 1000ms;
+
+  transform: translate(0, 0);
+  transition: transform 1000ms;
+
+  position: absolute;
+  background: rgb(116,90,60);
+  background: radial-gradient(circle, rgba(116,90,60,1) 0%, rgba(52,22,0,1) 100%);
+  width: 1800px;
+  height: 830px;
+  margin-left: 25px;
+  margin-top: 20px;
+  animation-name: block_news;
+  animation-delay: 0.1s;
+  animation-duration: 1s;
+  animation-fill-mode:both;  box-shadow: inset 0 1px 1px rgb(116,90,60,1), inset 0 -1px 0px rgb(116,90,60,1), 0 9px 16px 0 rgb(116,90,60,1), 0 4px 3px 0 rgb(116,90,60,1), 0 0 0 1px #150a1e;
+  text-shadow: 0 0 21px rgb(223, 206, 228, 0.5), 0 0 10px rgba(223, 206, 228, 0.4), 0 0 2px #2a153c;
+}
+.block_news.move {
+  -webkit-transform: translate(50px, 50px);
+  transform: translate(50px, 50px);
+}

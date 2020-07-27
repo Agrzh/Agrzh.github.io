@@ -30,16 +30,20 @@
       					   <h3>Авторизация</h3>
                      <label for="inp_1" class="inp_log">Введите логин:</label>
                             <div class="login">
-                                <input type="login" id="login-input" placeholder="Введите логин" name="login" class="login1">
-                                  <a href="#" class="login-control" onclick="return show_hide_password(this);"></a>
+                              <form class="form_log" onsubmit="return submit_Log()">
+                                <input type="login" id="login-input" placeholder="Введите логин" name="login" class="login1" id="logs">
+                              </form>
+                                  <a href="#" class="login-control"></a>
                             </div>
                             <label for="inp_2">Введите пароль:</label>
                             <div class="password">
-                              <input type="password" id="password-input" placeholder="Введите пароль" name="password" class="password_1">
+                              <form class="form_pass" onsubmit="return submit_Pass()">
+                              <input type="password" id="password-input" placeholder="Введите пароль" name="password" class="password_1" id="pass">
                               <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
+                            </form>
               </div>
   </div>
-                             <button onclick="multi()" class="btn-btn-primary">Войти</button>
+                             <button onclick="log()" class="btn-btn-primary">Войти</button>
   					<hr>
   			    </div>
       		</div>
